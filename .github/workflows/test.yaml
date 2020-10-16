@@ -23,6 +23,7 @@ jobs:
         uses: ModelingValueGroup/buildtools@master
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          trace: true
 
       - name: "(re)generate some files"
         run: |
