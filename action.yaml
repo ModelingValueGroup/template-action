@@ -53,8 +53,11 @@ runs:
           set -x
         fi
 
-        . "${{ github.action_path }}/buildtoolsMeme.sh" "$INPUT_TOKEN"
-        . "${{ github.action_path }}/functions.sh"
+        echo "d=${{github.action_path}}"
+        ls -la "${{github.action_path}}"
+
+        . "${{github.action_path}}/buildtoolsMeme.sh" "$INPUT_TOKEN"
+        . "${{github.action_path}}/functions.sh"
 
         main \
           "$INPUT_TOKEN" \
