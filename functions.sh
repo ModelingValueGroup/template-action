@@ -18,7 +18,7 @@ main() (
     local   token="$1"; shift
     local message="$1"; shift
 
-    echo "The message was: $message"
+    echo "The message was: $message" 1>&2
 
     setOutput "response" "$(printf "%s\n%s\n" "I agree with $message" "and again: I agree with $message")"
 )
