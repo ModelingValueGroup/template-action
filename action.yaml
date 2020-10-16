@@ -40,25 +40,9 @@ runs:
     - shell: bash
       id: main
       run: |
-        set -euo pipefail
+        [[ "${{inputs.trace}}" == "true" ]] && set -x
 
-        export   INPUT_TOKEN=${{inputs.trace  }}
-        export INPUT_MESSAGE=${{inputs.message}}
-        export   INPUT_TRACE=${{inputs.trace  }}
-
-        if [[ "$INPUT_TRACE" == "true" ]]; then
-          for name in $(env | grep '^INPUT_' | sed 's/^INPUT_//;s/=.*//' | sort); do
-            printf "# %16s = %s\n" "$name" "$(eval "echo \${INPUT_$name:-}")"
-          done
-          set -x
-        fi
-
-        echo "d=${{github.action_path}}"
-        ls -la "${{github.action_path}}"
-
-        . "${{github.action_path}}/buildtoolsMeme.sh" "$INPUT_TOKEN"
+        . "${{github.action_path}}/buildtoolsMeme.sh" "${{inputs.token}}"
         . "${{github.action_path}}/functions.sh"
 
-        main \
-          "$INPUT_TOKEN" \
-          "$INPUT_MESSAGE"
+        main "${{inputs.message}}"

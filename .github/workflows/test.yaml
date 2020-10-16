@@ -37,9 +37,7 @@ jobs:
           . <(java -jar ~/buildtools.jar)
           . functions.sh
           e="::set-output name=response::I agree with plugh or xyzzy%0Aand again: I agree with plugh or xyzzy%0A"
-          o="$(main \
-                "${{ secrets.REPO_AND_PACKAGES_TOKEN }}" \
-                "plugh or xyzzy")"
+          o="$(main "plugh or xyzzy")"
           if [[ "$o" != "$e" ]]; then
             echo "expected: $e"
             echo "found   : $o"
@@ -56,7 +54,7 @@ jobs:
 
       - name: "check output"
         run: |
-          echo "${{ steps.teststep.outputs.response }}"
+          echo "${{steps.teststep.outputs.response}}"
 
       - name: "push changes back to github"
         run: |
