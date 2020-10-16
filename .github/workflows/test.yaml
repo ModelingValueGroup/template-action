@@ -23,7 +23,6 @@ jobs:
         uses: ModelingValueGroup/buildtools@master
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          trace: true
 
       - name: "(re)generate some files"
         run: |
@@ -34,6 +33,7 @@ jobs:
       - name: "test"
         run: |
           set -euo pipefail
+          set -x
           . <(java -jar ~/buildtools.jar)
           . functions.sh
           main \
