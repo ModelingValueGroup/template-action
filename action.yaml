@@ -41,6 +41,7 @@ runs:
       id: main
       run: |
         set -euo pipefail
+        set -x
 
         if [[ "${INPUT_TRACE:-false}" == "true" ]]; then
           for name in $(env | grep '^INPUT_' | sed 's/^INPUT_//;s/=.*//' | sort); do
