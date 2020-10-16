@@ -36,9 +36,26 @@ jobs:
           set -x
           . <(java -jar ~/buildtools.jar)
           . functions.sh
-          main \
-            "${{ secrets.REPO_AND_PACKAGES_TOKEN }}" \
-            "plugh or xyzzy"
+          e="::set-output name=response::I agree with plugh or xyzzy%0Aand again: I agree with plugh or xyzzy%0A"
+          o="$(main \
+                "${{ secrets.REPO_AND_PACKAGES_TOKEN }}" \
+                "plugh or xyzzy")"
+          if [[ "$o" != "$e" ]]; then
+            echo "expected: $e"
+            echo "found   : $o"
+            exit 45
+          fi
+
+      - name: "test as action"
+        id: teststep
+        uses: ModelingValueGroup/template-action
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          message: hi
+
+      -name: "check output"
+        run: |
+          echo "${{ steps.teststep.outputs.response }}"
 
       - name: "push changes back to github"
         run: |

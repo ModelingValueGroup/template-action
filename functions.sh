@@ -20,8 +20,5 @@ main() (
 
     echo "The message was: $message"
 
-    setOutput "response" "
-I agree with $message
-and again: I agree with $message
-"
+    setOutput "response" "$(printf "%s\n%s\n" "I agree with $message" "and again: I agree with $message")"
 )
