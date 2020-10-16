@@ -52,6 +52,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           message: hi
+          trace: true
 
       - name: "check output"
         run: |
