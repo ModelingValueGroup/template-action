@@ -53,7 +53,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           message: hi
 
-      -name: "check output"
+      - name: "check output"
         run: |
           echo "${{ steps.teststep.outputs.response }}"
 
