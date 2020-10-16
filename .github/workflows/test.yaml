@@ -30,7 +30,7 @@ jobs:
           correctEols
           correctHeaders header
 
-      - name: "test"
+      - name: "test local"
         run: |
           set -euo pipefail
           set -x
@@ -45,7 +45,7 @@ jobs:
           fi
 
       - name: "test as action"
-        id: teststep
+        id: teststep1
         uses: ModelingValueGroup/template-action@master
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -54,7 +54,31 @@ jobs:
 
       - name: "check output"
         run: |
-          echo "${{steps.teststep.outputs.response}}"
+          e="$(printf "%s\n%s\n" "I agree with hi" "and again: I agree with hi)"
+          o="${{steps.teststep1.outputs.response}}"
+          if [[ "$o" != "$e" ]]; then
+            echo "expected: $e"
+            echo "found   : $o"
+            exit 45
+          fi
+
+      - name: "test as action"
+        id: teststep2
+        uses: ModelingValueGroup/template-action@master
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          message: 27%
+          trace: true
+
+      - name: "check output"
+        run: |
+          e="$(printf "%s\n%s\n" "I agree with 27%" "and again: I agree with 27%)"
+          o="${{steps.teststep2.outputs.response}}"
+          if [[ "$o" != "$e" ]]; then
+            echo "expected: $e"
+            echo "found   : $o"
+            exit 45
+          fi
 
       - name: "push changes back to github"
         run: |
