@@ -18,11 +18,10 @@ main() (
     local   token="$1"; shift
     local message="$1"; shift
 
-    ### check arguments
-    if [[ ! "$message" ]]; then
-        echo "::error:: no message"
-        exit 99
-    fi
-
     echo "The message was: $message"
+
+    setOutput "response" "
+I agree with $message
+and again: I agree with $message
+"
 )
