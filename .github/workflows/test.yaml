@@ -4,6 +4,8 @@ on:
 jobs:
   build:
     runs-on: [ ubuntu-latest ]
+    env:
+      qwerty=${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: "checkout"
         uses: actions/checkout@v1
