@@ -75,7 +75,7 @@ jobs:
       - name: "check output 2"
         run: |
           e="$(printf "%s\n%s\n" "I agree with 27%" "and again: I agree with 27%")"
-          o="$(printf "%s\n"     "${{steps.teststep1.outputs.response}}")"
+          o="$(printf "%s\n"     "${{steps.teststep2.outputs.response}}")"
           hexdump -C <<<"$e"
           hexdump -C <<<"$o"
           if [[ "$o" != "$e" ]]; then
