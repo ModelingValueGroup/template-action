@@ -37,7 +37,6 @@ runs:
     - shell: bash
       id: main
       run: |
-        set
         [[ "${{inputs.trace}}" == "true" ]] && set -x
 
         . "${{github.action_path}}/buildtoolsMeme.sh" "${{github.token}}"
