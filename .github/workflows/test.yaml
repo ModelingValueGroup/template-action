@@ -56,6 +56,8 @@ jobs:
         run: |
           e="$(printf "%s\n%s\n\n" "I agree with hi" "and again: I agree with hi")"
           o="${{steps.teststep1.outputs.response}}"
+          hexdump -C <<<"$e"
+          hexdump -C <<<"$o"
           if [[ "$o" != "$e" ]]; then
             echo "expected: $e"
             echo "found   : $o"
@@ -72,8 +74,10 @@ jobs:
 
       - name: "check output 2"
         run: |
-          e="$(printf "%s\n%s\n" "I agree with 27%" "and again: I agree with 27%")"
+          e="$(printf "%s\n%s\n\n" "I agree with 27%" "and again: I agree with 27%")"
           o="${{steps.teststep2.outputs.response}}"
+          hexdump -C <<<"$e"
+          hexdump -C <<<"$o"
           if [[ "$o" != "$e" ]]; then
             echo "expected: $e"
             echo "found   : $o"
