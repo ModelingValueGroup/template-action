@@ -43,7 +43,7 @@ runs:
         set
         [[ "${{inputs.trace}}" == "true" ]] && set -x
 
-        . "${{github.action_path}}/buildtoolsMeme.sh" "${{inputs.token}}"
+        . "${{github.action_path}}/buildtoolsMeme.sh" "${{github.token}}"
         . "${{github.action_path}}/functions.sh"
 
         main "${{inputs.message}}"

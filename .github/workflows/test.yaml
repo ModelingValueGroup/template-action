@@ -35,7 +35,6 @@ jobs:
       - name: "test local"
         run: |
           set -euo pipefail
-          set -x
           . <(java -jar ~/buildtools.jar)
           . functions.sh
           e="::set-output name=response::I agree with plugh or xyzzy%0Aand again: I agree with plugh or xyzzy%0A"
