@@ -49,7 +49,6 @@ jobs:
         id: teststep
         uses: ModelingValueGroup/template-action@master
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           message: hi
           trace: true
 

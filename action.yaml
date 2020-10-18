@@ -18,9 +18,6 @@ description: 'template for github action'
 author: 'Tom Brus'
 
 inputs:
-  token:
-    description: 'github token'
-    required: true
   message:
     description: 'the input message'
     required: true
