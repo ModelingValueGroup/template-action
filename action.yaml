@@ -18,9 +18,6 @@ description: 'template for github action'
 author: 'Tom Brus'
 
 inputs:
-  token:
-    description: 'github token'
-    required: true
   message:
     description: 'the input message'
     required: true
@@ -42,7 +39,7 @@ runs:
       run: |
         [[ "${{inputs.trace}}" == "true" ]] && set -x
 
-        . "${{github.action_path}}/buildtoolsMeme.sh" "${{inputs.token}}"
+        . "${{github.action_path}}/buildtoolsMeme.sh" "${{secrets.GITHUB_TOKEN}}"
         . "${{github.action_path}}/functions.sh"
 
         main "${{inputs.message}}"

@@ -44,40 +44,18 @@ jobs:
             exit 45
           fi
 
-      - name: "test as action 1"
-        id: teststep1
+      - name: "test as action"
+        id: teststep
         uses: ModelingValueGroup/template-action@master
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           message: hi
           trace: true
 
-      - name: "check output 1"
+      - name: "check output"
         run: |
           e="$(printf "%s\n%s\n" "I agree with hi" "and again: I agree with hi")"
-          o="$(printf "%s\n"     "${{steps.teststep1.outputs.response}}")"
-          hexdump -C <<<"$e"
-          hexdump -C <<<"$o"
-          if [[ "$o" != "$e" ]]; then
-            echo "expected: $e"
-            echo "found   : $o"
-            exit 45
-          fi
-
-      - name: "test as action 2"
-        id: teststep2
-        uses: ModelingValueGroup/template-action@master
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          message: 27%
-          trace: true
-
-      - name: "check output 2"
-        run: |
-          e="$(printf "%s\n%s\n" "I agree with 27%" "and again: I agree with 27%")"
-          o="$(printf "%s\n"     "${{steps.teststep2.outputs.response}}")"
-          hexdump -C <<<"$e"
-          hexdump -C <<<"$o"
+          o="$(printf "%s\n"     "${{steps.teststep.outputs.response}}")"
           if [[ "$o" != "$e" ]]; then
             echo "expected: $e"
             echo "found   : $o"
