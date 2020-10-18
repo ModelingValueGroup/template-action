@@ -54,7 +54,7 @@ jobs:
 
       - name: "check output 1"
         run: |
-          e="$(printf "%s\n%s\n" "I agree with hi" "and again: I agree with hi")"
+          e="$(printf "%s\n%s\n\n" "I agree with hi" "and again: I agree with hi")"
           o="${{steps.teststep1.outputs.response}}"
           if [[ "$o" != "$e" ]]; then
             echo "expected: $e"
