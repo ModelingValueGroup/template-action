@@ -46,7 +46,6 @@ jobs:
         uses: ModelingValueGroup/template-action@master
         with:
           message: hi
-          trace: true
 
       - name: "check output"
         run: |
