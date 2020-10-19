@@ -16,9 +16,6 @@ jobs:
         with:
           java-version: 11
 
-      - name: "get generic info"
-        uses: ModelingValueGroup/generic-info@master
-
       - name: "get buildtools"
         uses: ModelingValueGroup/buildtools@master
 
@@ -27,6 +24,11 @@ jobs:
           . <(java -jar ~/buildtools.jar)
           correctEols
           correctHeaders header
+
+      - name: "push changes back to github"
+        run: |
+          . <(java -jar ~/buildtools.jar)
+          pushBackToGithub "${{ secrets.GITHUB_TOKEN }}" "automation@modelingvalue.com" "adjusted files [by github actions]"
 
       - name: "test local"
         run: |
@@ -56,9 +58,3 @@ jobs:
             echo "found   : $o"
             exit 45
           fi
-
-      - name: "push changes back to github"
-        run: |
-          . <(java -jar ~/buildtools.jar)
-          pushBackToGithub "${{ secrets.GITHUB_TOKEN }}" "automation@modelingvalue.com" "adjusted files [by github actions]"
-

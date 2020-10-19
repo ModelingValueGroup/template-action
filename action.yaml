@@ -37,6 +37,7 @@ runs:
     - shell: bash
       id: main
       run: |
+        set -euo pipefail
         [[ "${{inputs.trace}}" == "true" ]] && set -x
 
         . "${{github.action_path}}/buildtoolsMeme.sh" "${{github.token}}" ""
