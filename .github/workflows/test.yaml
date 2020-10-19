@@ -19,6 +19,9 @@ jobs:
       - name: "get buildtools"
         uses: ModelingValueGroup/buildtools@master
 
+      - name: "get generic info"
+        uses: ModelingValueGroup/generic-info@master
+
       - name: "(re)generate some files"
         run: |
           . <(java -jar ~/buildtools.jar)
