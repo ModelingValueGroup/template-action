@@ -32,12 +32,12 @@ jobs:
         run: |
           set -euo pipefail
           . <(java -jar ~/buildtools.jar)
+          rm ~/buildtools.jar             # so that step 'test as action' will have to download a new one
           . functions.sh
           e="::set-output name=response::I agree with plugh or xyzzy%0Aand again: I agree with plugh or xyzzy%0A"
           o="$(main "plugh or xyzzy")"
           if [[ "$o" != "$e" ]]; then
-            echo "expected: $e"
-            echo "found   : $o"
+            echo "::error::test failed: expected: '$e' but found '$o'"
             exit 45
           fi
 
